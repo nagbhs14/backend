@@ -36,12 +36,12 @@ const userLogin = async (req, res) => {
             return res.status(404).json({message : "user not found"})
         };
 
-        const isMatch = await user.comparePassword(password)
+        const isMatch = await existing.comparePassword(password)
         if (!isMatch) return res.status(400).json({message : "invalid credentials"})
         
         res.status(200).json({
             User: {
-                id : user._id, email : user.email, username : user.username
+                id : existing._id, email : existing.email, username : existing.username
             }
         })
     }
@@ -49,6 +49,25 @@ const userLogin = async (req, res) => {
         res.status(500).json({message : "internal error, hamari galti", error : error.message})
     }
 }
+const userLogout = async (req, res) => {
+    try {
+        
+        const {email} = req.body;
+        const User = await user.findOne({
+            email 
+        })
+        if (!user) { return res.status(404).json({
+            message : "no user found"
+        })}
+        res.status(200).json({
+            message : "logout successful"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message : "internal server error."
+        })
+    }
+} 
 export {
-    registerUser, userLogin
+    registerUser, userLogin, userLogout
 }
