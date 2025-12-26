@@ -1,11 +1,7 @@
-Backend Learning
-
-Learning backend development 
+backend development 
 Focusing on server-side logic
-Building small backend projects
-Creating REST APIs
-Handling requests, responses, and errors
+creating REST APIs
 Connecting backend with MongoDB
 Learning basic authentication
-Using Node.js, Express.js, 
-Beginner, learning consistently
+using Node.js, Express.js, 
+
